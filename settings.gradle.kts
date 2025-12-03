@@ -1,4 +1,4 @@
-rootProject.name = "CmpLibraryTemplate"
+rootProject.name = "UriPainter"
 
 enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 
@@ -36,4 +36,5 @@ dependencyResolutionManagement {
     }
 }
 
-include(":core")
+include(":library")
+include(":demo")
