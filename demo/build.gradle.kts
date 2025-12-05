@@ -97,10 +97,10 @@ compose.desktop {
 }
 
 android {
-    namespace = "com.composables.uripainter"
+    namespace = "com.composables.uripainter.demo"
     compileSdk = libs.versions.android.compileSDK.get().toInt()
     defaultConfig {
-        minSdk = libs.versions.android.minSDK.get().toInt()
+        minSdk = 23
         targetSdk = libs.versions.android.compileSDK.get().toInt()
         applicationId = "com.composables.uripainter.demo"
         versionCode = 1
