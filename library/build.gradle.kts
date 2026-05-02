@@ -15,7 +15,7 @@ val LibraryName = "Compose Uri Painter"
 val LibraryDescription = "A painter for Compose Multiplatform that loads images via a Uri."
 val publishGroupId = "com.composables"
 val publishArtifactId = "compose-uri-painter"
-val publishVersion = "1.0.3"
+val publishVersion = "1.0.4"
 
 val githubUrl = "github.com/composablehorizons/$publishArtifactId"
 
@@ -108,7 +108,7 @@ version = publishVersion
 mavenPublishing {
     publishToMavenCentral(automaticRelease = true, validateDeployment = false)
 
-    if (System.getenv("SIGNING_KEY_ID") != null) {
+    if (project.hasProperty("signingInMemoryKeyId")) {
         signAllPublications()
     }
 
