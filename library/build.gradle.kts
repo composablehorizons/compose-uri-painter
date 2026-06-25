@@ -50,7 +50,7 @@ kotlin {
         browser()
     }
 
-    listOf(iosX64(), iosArm64(), iosSimulatorArm64()).forEach { iosTarget ->
+    listOf(iosArm64(), iosSimulatorArm64()).forEach { iosTarget ->
         iosTarget.binaries.framework {
             baseName = "ComposeUriPainter"
             isStatic = true
@@ -60,13 +60,10 @@ kotlin {
     sourceSets {
         commonMain.dependencies {
             implementation(libs.coil.compose)
-
-
             implementation(libs.ktor.client.core)
             implementation(libs.coil)
-            api(libs.coil.compose)
-            api(libs.coil.compose.core)
-
+            implementation(libs.coil.compose)
+            implementation(libs.coil.compose.core)
             implementation(libs.coil.network.ktor)
         }
 
