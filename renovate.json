@@ -1,0 +1,52 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": [
+    "config:recommended"
+  ],
+  "dependencyDashboard": true,
+  "rangeStrategy": "bump",
+  "packageRules": [
+    {
+      "description": "Disable dependency updates by default.",
+      "matchPackageNames": [
+        "/.*/"
+      ],
+      "enabled": false
+    },
+    {
+      "description": "Only propose stable Maven and Gradle plugin releases.",
+      "matchDatasources": [
+        "maven",
+        "gradle-plugin"
+      ],
+      "allowedVersions": "!/^.*[-.](alpha|beta|rc|cr|milestone|eap|dev|snapshot|m[0-9]+)[-.0-9]*$/i"
+    },
+    {
+      "description": "Update Coil together.",
+      "matchPackageNames": [
+        "/^io\\.coil-kt\\.coil3:/"
+      ],
+      "enabled": true,
+      "groupName": "Coil"
+    },
+    {
+      "description": "Update Compose Multiplatform together.",
+      "matchPackageNames": [
+        "org.jetbrains.compose",
+        "/^org\\.jetbrains\\.compose[.:]/"
+      ],
+      "enabled": true,
+      "groupName": "Compose Multiplatform"
+    },
+    {
+      "description": "Update Kotlin Gradle plugins together.",
+      "matchPackageNames": [
+        "org.jetbrains.kotlin.multiplatform",
+        "org.jetbrains.kotlin.plugin.compose",
+        "/^org\\.jetbrains\\.kotlin[.:]/"
+      ],
+      "enabled": true,
+      "groupName": "Kotlin"
+    }
+  ]
+}
