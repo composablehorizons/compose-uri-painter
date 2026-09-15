@@ -25,6 +25,15 @@ jobs:
       - uses: actions/checkout@v4
         with:
           ref: ${{ env.RELEASE_REF }}
+      - name: Validate release version
+        shell: bash
+        run: |
+          set -euo pipefail
+          version="$(awk -F'\"' '/^uripainter = / { print $2; exit }' gradle/libs.versions.toml)"
+          readme_version="$(sed -nE 's/.*com\.composables:compose-uri-painter:([0-9]+\.[0-9]+\.[0-9]+).*/\1/p' README.md | head -n1)"
+          test "$version" = "$RELEASE_REF"
+          test "$readme_version" = "$RELEASE_REF"
+
       - uses: gradle/actions/wrapper-validation@v3
       - uses: actions/setup-java@v4
         with:
