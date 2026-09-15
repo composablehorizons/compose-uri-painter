@@ -15,7 +15,7 @@ val LibraryName = "Compose Uri Painter"
 val LibraryDescription = "A painter for Compose Multiplatform that loads images via a Uri."
 val publishGroupId = "com.composables"
 val publishArtifactId = "compose-uri-painter"
-val publishVersion = "1.1.0"
+val publishVersion = libs.versions.uripainter.get()
 
 val githubUrl = "github.com/composablehorizons/$publishArtifactId"
 

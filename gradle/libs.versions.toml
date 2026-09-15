@@ -1,5 +1,5 @@
 [versions]
-uripainter = "1.0.0"
+uripainter = "1.1.0"
 
 kotlin = "2.4.0"
 compose = "1.12.0"
