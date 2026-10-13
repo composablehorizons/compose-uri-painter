@@ -59,32 +59,9 @@ kotlin {
 
     sourceSets {
         commonMain.dependencies {
-            implementation(libs.coil.compose)
-            implementation(libs.ktor.client.core)
-            implementation(libs.coil)
-            implementation(libs.coil.compose)
-            implementation(libs.coil.compose.core)
-            implementation(libs.coil.network.ktor)
-        }
-
-        androidMain.dependencies {
-            implementation(libs.ktor.client.okhttp)
-        }
-
-        iosMain.dependencies {
-            implementation(libs.ktor.client.darwin)
-        }
-
-        jvmMain.dependencies {
-            implementation(libs.ktor.client.okhttp)
-        }
-
-        wasmJsMain.dependencies {
-            implementation(libs.ktor.client.js)
-        }
-
-        jsMain.dependencies {
-            implementation(libs.ktor.client.js)
+            implementation(libs.sketch.compose)
+            implementation(libs.sketch.http)
+            implementation(libs.sketch.animated.gif)
         }
     }
 }

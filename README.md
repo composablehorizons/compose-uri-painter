@@ -39,10 +39,7 @@ fun App() {
 
 This is the simplest way to add image loading from a URI to your Jetpack Compose and Compose Multiplatform projects.
 
-As opposed to other image loading libraries, the Uri Painter focuses on loading your images, without handling any extra animation effects.
-
-As a matter of fact, Uri Painter is a [simple wrapper of Coil](https://github.com/coil-kt/coil), pre-configured to work
-on all Compose projects out of the box, without all the bells and whistles.
+Uri Painter wraps [Sketch](https://github.com/panpf/sketch) to load still and animated GIF images on Android, iOS, desktop, and web. Pass `crossfade = 300.milliseconds` to fade an image in when it loads.
 
 ## Contributing
 

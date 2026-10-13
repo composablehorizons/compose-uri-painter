@@ -2,11 +2,8 @@ package com.composables.uripainter
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.painter.Painter
-import coil3.compose.LocalPlatformContext
-import coil3.compose.rememberAsyncImagePainter
-import coil3.request.CachePolicy
-import coil3.request.ImageRequest
-import coil3.request.crossfade
+import com.github.panpf.sketch.rememberAsyncImagePainter
+import com.github.panpf.sketch.request.ComposableImageRequest
 import kotlin.time.Duration
 import kotlin.time.Duration.Companion.milliseconds
 
@@ -17,12 +14,11 @@ typealias Uri = String
  */
 @Composable
 fun rememberUriPainter(uri: Uri, crossfade: Duration = 0.milliseconds): Painter {
-    val context = LocalPlatformContext.current
-
     return rememberAsyncImagePainter(
-        ImageRequest.Builder(context)
-            .data(uri)
-            .crossfade(crossfade.inWholeMilliseconds.toInt())
-            .build()
+        request = ComposableImageRequest(uri) {
+            if (crossfade > Duration.ZERO) {
+                crossfade(crossfade.inWholeMilliseconds.toInt(), alwaysUse = true)
+            }
+        }
     )
 }
