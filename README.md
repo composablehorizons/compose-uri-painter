@@ -10,7 +10,7 @@ repositories {
 }
 
 dependencies {
-    implementation("com.composables:compose-uri-painter:1.3.0")
+    implementation("com.composables:compose-uri-painter:1.4.0")
 }
 ```
 
