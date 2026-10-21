@@ -11,7 +11,8 @@ fun App() {
     Image(
         painter = rememberUriPainter(
             uri = "https://images.unsplash.com/photo-1476673160081-cf065607f449?q=80&w=1920",
-            crossfade = 200.milliseconds
+            crossfade = 200.milliseconds,
+            contentScale = ContentScale.Crop,
         ),
         contentDescription = null,
         modifier = Modifier.fillMaxSize(),

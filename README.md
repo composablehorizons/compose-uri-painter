@@ -27,13 +27,18 @@ import com.composables.uripainter.rememberUriPainter
 @Composable
 fun App() {
     Image(
-        painter = rememberUriPainter("https://images.unsplash.com/photo-1476673160081-cf065607f449?q=80&w=1920"),
+        painter = rememberUriPainter(
+            "https://images.unsplash.com/photo-1476673160081-cf065607f449?q=80&w=1920",
+            contentScale = ContentScale.Crop,
+        ),
         contentDescription = null,
         modifier = Modifier.fillMaxSize(),
         contentScale = ContentScale.Crop
     )
 }
 ```
+
+When using a content scale such as `ContentScale.Crop`, pass the same value to `rememberUriPainter` and `Image`. This keeps the first draw and crossfade scaling consistent while the image dimensions become available.
 
 ## Why use this
 
