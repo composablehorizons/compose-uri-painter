@@ -63,6 +63,11 @@ kotlin {
             implementation(libs.sketch.http)
             implementation(libs.sketch.animated.gif)
         }
+        jvmTest.dependencies {
+            implementation(kotlin("test"))
+            implementation(compose.desktop.currentOs)
+            implementation("org.jetbrains.compose.ui:ui-test:${libs.versions.compose.get()}")
+        }
     }
 }
 

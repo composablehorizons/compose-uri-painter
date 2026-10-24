@@ -40,6 +40,8 @@ fun App() {
 
 When using a content scale such as `ContentScale.Crop`, pass the same value to `rememberUriPainter` and `Image`. This keeps the first draw and crossfade scaling consistent while the image dimensions become available.
 
+While loading, the painter is transparent. When the image becomes available, its dimensions and drawing update together during composition.
+
 ## Why use this
 
 This is the simplest way to add image loading from a URI to your Jetpack Compose and Compose Multiplatform projects.
