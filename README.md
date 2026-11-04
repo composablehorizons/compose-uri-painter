@@ -1,6 +1,4 @@
-![A photo loading from a URL into a Compose Multiplatform app, fading in on Android, iOS, desktop and web side by side]()
-
-_Demo idea: the same screen running on Android, iOS, desktop and in the browser, each loading a photo from a URL and fading it in._
+![A grid of tiles labeled with image URLs, each photo fading in over its URL as it loads](docs/hero.gif)
 
 # Compose Uri Painter
 
