@@ -1,4 +1,4 @@
-![A grid of tiles labeled with image URLs, each photo fading in over its URL as it loads](docs/hero.gif)
+![A grid of empty cards, each photo fading in as it loads](docs/hero.gif)
 
 # Compose Uri Painter
 
