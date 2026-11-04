@@ -3,69 +3,20 @@ name: Release
 on:
   workflow_dispatch:
     inputs:
-      tag:
-        description: Release tag to publish
+      bump:
+        description: Which part of the version to increase
         required: true
-        type: string
-  push:
-    tags:
-      - '*'
-
-permissions:
-  contents: write
-
-env:
-  RELEASE_REF: ${{ github.event_name == 'workflow_dispatch' && inputs.tag || github.ref_name }}
+        type: choice
+        options: [patch, minor, major]
 
 jobs:
-  publish:
-    runs-on: ubuntu-latest
-    environment: maven-central
-    steps:
-      - uses: actions/checkout@v4
-        with:
-          ref: ${{ env.RELEASE_REF }}
-      - name: Validate release version
-        shell: bash
-        run: |
-          set -euo pipefail
-          version="$(awk -F'\"' '/^uripainter = / { print $2; exit }' gradle/libs.versions.toml)"
-          readme_version="$(sed -nE 's/.*com\.composables:compose-uri-painter:([0-9]+\.[0-9]+\.[0-9]+).*/\1/p' README.md | head -n1)"
-          test "$version" = "$RELEASE_REF"
-          test "$readme_version" = "$RELEASE_REF"
-
-      - uses: gradle/actions/wrapper-validation@v3
-      - uses: actions/setup-java@v4
-        with:
-          distribution: temurin
-          java-version: 17
-
-      - uses: actions/cache@v4
-        with:
-          path: |
-            ~/.gradle/caches
-            ~/.gradle/wrapper
-          key: gradle-${{ runner.os }}-${{ hashFiles('**/gradle-wrapper.properties', '**/*.gradle*', '**/gradle.properties') }}
-          restore-keys: |
-            gradle-${{ runner.os }}-
-
-      - name: Publish to Maven Central
-        env:
-          ORG_GRADLE_PROJECT_mavenCentralUsername: ${{ secrets.OSSRH_USERNAME }}
-          ORG_GRADLE_PROJECT_mavenCentralPassword: ${{ secrets.OSSRH_PASSWORD }}
-          ORG_GRADLE_PROJECT_signingInMemoryKeyId: ${{ secrets.SIGNING_KEY_ID }}
-          ORG_GRADLE_PROJECT_signingInMemoryKeyPassword: ${{ secrets.SIGNING_PASSWORD }}
-          ORG_GRADLE_PROJECT_signingInMemoryKey: ${{ secrets.SIGNING_KEY }}
-        run: ./gradlew publishAllPublicationsToMavenCentral --no-configuration-cache
-
-  create-release:
-    runs-on: ubuntu-latest
-    needs: publish
-    steps:
-      - name: Create draft GitHub Release
-        uses: softprops/action-gh-release@v2
-        with:
-          tag_name: ${{ env.RELEASE_REF }}
-          name: ${{ env.RELEASE_REF }}
-          draft: true
-          generate_release_notes: true
+  release:
+    uses: composablehorizons/.github/.github/workflows/library-release.yml@main
+    with:
+      bump: ${{ inputs.bump }}
+      package-directory: library
+      test-command: :library:jvmTest
+      android-packages: 'platforms;android-36 build-tools;35.0.0'
+    permissions:
+      contents: write
+    secrets: inherit

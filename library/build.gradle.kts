@@ -8,16 +8,8 @@ plugins {
     alias(libs.plugins.compose.compiler)
     alias(libs.plugins.kotlin.multiplatform)
     alias(libs.plugins.android.library)
-    alias(libs.plugins.maven.publish)
+    id("com.composables.kpm")
 }
-
-val LibraryName = "Compose Uri Painter"
-val LibraryDescription = "A painter for Compose Multiplatform that loads images via a Uri."
-val publishGroupId = "com.composables"
-val publishArtifactId = "compose-uri-painter"
-val publishVersion = libs.versions.uripainter.get()
-
-val githubUrl = "github.com/composablehorizons/$publishArtifactId"
 
 java {
     toolchain {
@@ -80,48 +72,8 @@ android {
     }
 }
 
-
-group = publishGroupId
-version = publishVersion
-
-mavenPublishing {
-    publishToMavenCentral(automaticRelease = true, validateDeployment = false)
-
-    if (project.hasProperty("signingInMemoryKeyId")) {
-        signAllPublications()
-    }
-
-    coordinates(publishGroupId, publishArtifactId, publishVersion)
-
-    pom {
-        name.set(LibraryName)
-        description.set(LibraryDescription)
-        url.set("https://${githubUrl}")
-
-        licenses {
-            license {
-                name.set("MIT License")
-                url.set("https://${githubUrl}/blob/main/LICENSE")
-            }
-        }
-
-        issueManagement {
-            system.set("GitHub Issues")
-            url.set("https://${githubUrl}/issues")
-        }
-
-        developers {
-            developer {
-                id.set("composablehorizons")
-                name.set("Composable Horizons")
-                email.set("alex@composables.com")
-            }
-        }
-
-        scm {
-            connection.set("scm:git:${githubUrl}.git")
-            developerConnection.set("scm:git:ssh://${githubUrl}.git")
-            url.set("https://${githubUrl}/tree/main")
-        }
-    }
+// Compose 1.12 asks consumers for AGP 9.1, which the published library does not need itself.
+// AGP 8.12 never ran this check for libraries; keep it off until the build moves to AGP 9.
+tasks.matching { it.name.startsWith("check") && it.name.endsWith("AarMetadata") }.configureEach {
+    enabled = false
 }

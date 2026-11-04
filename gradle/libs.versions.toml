@@ -1,17 +1,14 @@
 [versions]
-uripainter = "1.4.1"
-
 kotlin = "2.4.0"
 compose = "1.12.0"
 
 sketch = "4.7.0"
 activity-core = "1.13.0"
-vanniktech = "0.35.0"
 
 # Android
 android-compileSDK = "36"
 android-minSDK = "21"
-agp = "8.12.3"
+agp = "8.13.2"
 
 [libraries]
 sketch-compose = { module = "io.github.panpf.sketch4:sketch-compose", version.ref = "sketch" }
@@ -25,4 +22,3 @@ kotlin-multiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref 
 compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 android-application = { id = "com.android.application", version.ref = "agp" }
 android-library = { id = "com.android.library", version.ref = "agp" }
-maven-publish = { id = "com.vanniktech.maven.publish", version.ref = "vanniktech" }

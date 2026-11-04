@@ -1,0 +1,22 @@
+name: Compose Uri Painter
+description: A painter for Compose Multiplatform that loads images via a Uri.
+groupId: com.composables
+artifactId: compose-uri-painter
+version: 1.4.1
+url: https://github.com/composablehorizons/compose-uri-painter
+licenses:
+  - name: MIT License
+    url: https://opensource.org/license/mit
+    distribution: repo
+developers:
+  - id: composablehorizons
+    name: Composable Horizons
+    email: alex@composables.com
+    url: https://composables.com
+scm:
+  connection: scm:git:https://github.com/composablehorizons/compose-uri-painter.git
+  developerConnection: scm:git:ssh://git@github.com/composablehorizons/compose-uri-painter.git
+  url: https://github.com/composablehorizons/compose-uri-painter
+issueManagement:
+  system: GitHub Issues
+  url: https://github.com/composablehorizons/compose-uri-painter/issues
