@@ -84,7 +84,10 @@ Image(
 )
 ```
 
-`rememberUriPainter()` uses `ContentScale.Fit` by default, matching `Image`. Pass the same value to both so the image keeps its proportions while it loads and fades in.
+`rememberUriPainter()` uses `ContentScale.Fit` by default, matching `Image`.
+
+> [!WARNING]
+> Pass the same `contentScale` to `rememberUriPainter()` and `Image`. If they differ, the image can stretch or jump while it loads and fades in.
 
 ### Show an animated GIF
 
