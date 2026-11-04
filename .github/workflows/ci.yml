@@ -25,4 +25,5 @@ jobs:
           java-version: '17'
       - uses: gradle/actions/setup-gradle@v5
       - name: Test the library and compile the demos
-        run: ./gradlew --console=plain :library:jvmTest :demo:compileKotlinJvm :demo:compileKotlinWasmJs
+        # The Compose UI tests need a display; Linux runners have none, so use a virtual one.
+        run: xvfb-run --auto-servernum ./gradlew --console=plain :library:jvmTest :demo:compileKotlinJvm :demo:compileKotlinWasmJs
